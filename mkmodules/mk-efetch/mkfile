@@ -1,0 +1,30 @@
+MKSHELL="/bin/bash"
+
+#target: OPTIONS: prereq
+# option Q=QUIET does not show all messages
+
+# obtain fasta files from ncbi using NCBI's EDirect tools
+# efetch searchs and download .fasta, .fna and .faa files if a nucleotide db ID is given
+# if efetch fails, a .fetcherror file should be created
+# the final files for mk recipe have .fetcherror extension
+
+%.fasta.fetcherror:Q: %.fasta
+	echo "[DEBUG] Looking for fetching errors in $prereq and saving them in $target"
+	if [ $(cat $prereq | wc -l) -le 1 ]
+	then
+	echo "efetch could not find any DNA fasta sequence for $stem" > $target && rm "$stem".fasta
+	elif [ $(cat "$stem"-prot.fna | wc -l) -le 1 ]
+	then
+	echo "efetch could not find any na sequence (for proteins) for $stem" > "$stem"-prot.fna.fetcherror && rm "$stem"-prot.fna
+	fi
+	if [ $(cat "$stem"-prot.faa | wc -l) -le 1 ]
+	then
+	echo "efetch could not find any aa sequence (for proteins) for $stem" > "$stem"-prot.faa.fetcherror && rm "$stem"-prot.faa
+	fi
+
+
+%.fasta:Q:
+	echo "[DEBUG] fetching plasmid ID: $stem"
+	efetch -db nuccore -id "$stem" -format fasta_cds_aa > "$stem"-prot.faa
+	efetch -db nuccore -id "$stem" -format fasta_cds_na > "$stem"-prot.fna
+	efetch -db nuccore -id "$stem" -format fasta > "$target"
