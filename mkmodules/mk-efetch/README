@@ -1,0 +1,41 @@
+Este modulo toma IDs de NCBI de un archivo .txt y hace lo siguiente
+-Con el comando efetch descarga 
+	- un archivo .faa que contiene la secuencia de aminoacidos de las proteinas asociadas a ese ID
+	- un archivo .fna que contiene la secuencia de nucleotidos de las proteinas asociadas a ese ID
+	- un archivo .fasta que contiene la secuencia de nucleotidos del ID (en este caso, de algun plasmido bacteriano)
+
+# Input
+Este modulo recibe un archivo con extension .txt 
+Ejemplo:
+ten_ids.txt 
+que contiene 10 IDs de plasmidos
+==
+MW415442.1
+MW415441.1
+MW415440.1
+CP049851.1
+CP049850.1
+...
+==
+
+# Output
+Este modulo crea archivos .fna, .faa, .fasta y .fetcherror si es que efetch falla al buscar en la base nucleotide de NCBI
+Ejemplo
+ID-prot.faa
+ID-prot.fna
+ID.fasta
+ID-prot.faa.fetcherror
+ID-prot.fna.fetcherror
+
+# Dependencias
+
+NCBI's EDirect [https://www.ncbi.nlm.nih.gov/books/NBK179288/]
+efetch from EDirect
+
+# Autor
+Josue Guzman-Linares
+
+# Contribuidores
+Paulina Perez Gonzales ()
+Judith Ballesteros Villascan ()
+Israel Aguilar Ordoñez ()
