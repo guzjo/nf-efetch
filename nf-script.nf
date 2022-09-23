@@ -207,7 +207,7 @@ log.info "==========================================\nPipeline Start"
 // Read mkmodule 1
 
 Channel
-  .fromPath("${workflow.projectDir}//mkmodules/mk-efetch/*")
+  .fromPath("${workflow.projectDir}/mkmodules/mk-efetch/*")
   .toList()
   .set{ mkfiles_efetch }
 
