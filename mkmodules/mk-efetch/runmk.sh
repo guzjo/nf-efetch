@@ -7,5 +7,5 @@ find -L . \
  -type f \
  -name "*.txt" \
 | xargs cat \
-| sed "s#\$#.fasta.fetcherror#" \
+| sed "s#\$#.fasta#" \
 | xargs mk
