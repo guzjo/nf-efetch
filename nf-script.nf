@@ -3,9 +3,10 @@
 /*================================================================
 The Aguilar Lab presents...
 
-The nf-efetch analysis Pipeline
+The nf-efetch-plasmid analysis pipeline
 
-- A tool for download .fasta files from NCBI via efectch
+- A pipeline for downloading plasmid fasta files (both nucleotides and amino acids)
+
 
 ==================================================================
 Version: 0.1
@@ -14,23 +15,22 @@ Project repository: https://github.com/guzjo/nf-efetch
 Authors:
 
 - Bioinformatics Design
- Josue Guzman-Linares (josue.guzl98@gmail.com)
- Paulina Perez-Gonzalez ()
- Israel Aguilar-Ordoñez (iaguilaror@gmail.com)
+	Josue Guzman-Linares (josue.guzl98@gmail.com)
+	Paulina Perez-Gonzalez ()
 
 - Bioinformatics Development
- Josue Guzman-Linares (josue.guzl98@gmail.com)
- Paulina Perez-Gonzalez ()
- Israel Aguilar-Ordoñez (iaguilaror@gmail.com)
+	Josue Guzman-Linares (josue.guzl98@gmail.com)
+	Paulina Perez-Gonzalez ()
 
 - Nextflow Port
-Josue Guzman-Linares (iaguilaror@gmail.com)
+	Josue Guzman-Linares (iaguilaror@gmail.com)
+	Josue Eduardo Garcia-Lopez
 
 =============================
 Pipeline Processes In Brief:
 
 EFETCHDOWNLOAD:
-- efetch fasta download
+- Download .fasta, .fna and .faa files via efetch
 
 Fasta file filtering:
 - Separating empty files
@@ -47,16 +47,12 @@ Bioinformatics analysis
 def helpMessage() {
 	log.info"""
   ==========================================
-	The miRNA and 3'UTR consensus sequences extractor pipeline
+	The nf-efetch-plasmid analysis pipeline
   v${version}
   ==========================================
 	Usage:
-	nextflow run ${pipeline_name}.nf --mirnabed <path to input 1> --utrbed <path to input 2>
-  --vcf <path to input 3> --fasta <path to input 4>   [--output_dir path to results ]
-	  --mirnabed	<- miRNA bed file;
-	  --utrbed	<- UTR bed file;
-    --vcf <- VCF file;
-    --fasta_dir <- Directory whith the FASTA files;
+	nextflow run ${pipeline_name}.nf --plasmids <path to input 1> [--output_dir path to results ]
+	  --plasmids	<- plasmids IDs file;
 	  --output_dir     <- directory where results, intermediate and log files will be stored;
 	      default: same dir where --query_fasta resides
 	  -resume	   <- Use cached results if the executed project has been run before;
@@ -112,7 +108,7 @@ if (params.version){
 
 /*//////////////////////////////
   Define the Nextflow version under which this pipeline was developed or successfuly tested
-  Updated by iaguilar at MAY 2021
+  Updated by Josue Guzman at SEPTEMBER 2022
 */
 nextflow_required_version = '20.01.0'
 /*
@@ -171,7 +167,7 @@ Useful functions definition
 */
 log.info"""
 ==========================================
-The nf-plasmids
+THe nf-efetch-plasmid analysis pipeline
 v${version}
 ==========================================
 """
