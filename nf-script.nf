@@ -3,9 +3,9 @@
 /*================================================================
 The Aguilar Lab presents...
 
-The nf-efetch-plasmid analysis pipeline
+The nf-efetch-sequence-analysis pipeline
 
-- A pipeline for downloading plasmid fasta files (both nucleotides and amino acids)
+- A pipeline for downloading fasta files (both nucleotides and amino acids)
 
 
 ==================================================================
@@ -47,7 +47,7 @@ Bioinformatics analysis
 def helpMessage() {
 	log.info"""
   ==========================================
-	The nf-efetch-plasmid analysis pipeline
+	The nf-efetch-sequence-analysis pipeline
   v${version}
   ==========================================
 	Usage:
