@@ -1,4 +1,4 @@
-plasmids_txt="test/data/ten_ids.txt"
+plasmids_txt="test/data/*.txt"
 
 output_directory="$(dirname $plasmids_txt)/results"
 
