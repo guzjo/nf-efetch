@@ -2,7 +2,7 @@
 .nextflow.log*
 .nextflow/
 
-## ignore workdirw
+## ignore workdir
 work*
 
 ## Ignore test subdirectories from mkmodules
@@ -10,4 +10,4 @@ mkmodules/*/test/results/*
 
 ## Ignore everything in data folder except data file
 test/data/*
-!test/data/ten_ids.txt
+!test/data/*.txt
